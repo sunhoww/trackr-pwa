@@ -16,6 +16,8 @@ untyped-type-import=off
 
 [options]
 include_warnings=true
+suppress_type=$FlowFixMe
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore
 
 [strict]

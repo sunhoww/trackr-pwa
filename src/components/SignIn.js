@@ -6,11 +6,15 @@ import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { withStyles } from '@material-ui/core/styles';
+import { Mutation } from 'react-apollo';
+
+import { LOGIN } from '../graphql/queries';
 
 const styles = (theme: Object) => ({
   main: {
@@ -45,6 +49,14 @@ const styles = (theme: Object) => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
+    position: 'relative',
+  },
+  submitProgress: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
   },
 });
 
@@ -60,13 +72,22 @@ type State = {
 
 class SignIn extends React.Component<Props, State> {
   state = {
+    email: undefined,
+    password: undefined,
     showPassword: false,
   };
-  handleChange = field => event => {
-    this.setState({ [field]: event.target.value });
+  handleChange = field => e => {
+    this.setState({ [field]: e.target.value });
   };
   handleShowPassword = () => {
     this.setState(state => ({ showPassword: !state.showPassword }));
+  };
+  handleSubmit = mutation => e => {
+    e.preventDefault();
+    const { email, password } = this.state;
+    if (email && password) {
+      mutation({ variables: { email, password } });
+    }
   };
   render() {
     const { classes } = this.props;
@@ -116,15 +137,30 @@ class SignIn extends React.Component<Props, State> {
                 ),
               }}
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign in
-            </Button>
+            <Mutation mutation={LOGIN}>
+              {(login, { loading }) => {
+                return (
+                  <div className={classes.submit}>
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      color="primary"
+                      disabled={loading}
+                      onClick={this.handleSubmit(login)}
+                    >
+                      Sign in
+                    </Button>
+                    {loading && (
+                      <CircularProgress
+                        size={24}
+                        className={classes.submitProgress}
+                      />
+                    )}
+                  </div>
+                );
+              }}
+            </Mutation>
           </form>
         </Paper>
       </main>
