@@ -5,17 +5,17 @@ import withMockedProviders from '../withMockedProviders';
 
 import SignInComponent from './SignIn';
 
-const SignIn = withMockedProviders(SignInComponent);
-
 describe('SignIn', () => {
   afterEach(cleanup);
 
   it('snapshot renders correctly', () => {
+    const SignIn = withMockedProviders()(SignInComponent);
     const tree = renderer.create(<SignIn />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('password field can be toggled', () => {
+    const SignIn = withMockedProviders()(SignInComponent);
     const { queryByLabelText, getByLabelText } = render(<SignIn />);
     expect(queryByLabelText(/Password/i).type).toBe('password');
     fireEvent.click(getByLabelText(/Toggle password visibility/i));

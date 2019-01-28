@@ -9,9 +9,11 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { withStyles } from '@material-ui/core/styles';
+import classnames from 'classnames';
 import { Mutation } from 'react-apollo';
 
 import { LOGIN } from '../graphql/queries';
@@ -43,6 +45,9 @@ const styles = (theme: Object) => ({
     height: 64,
     backgroundColor: theme.palette.text.hint,
   },
+  errored: {
+    backgroundColor: theme.palette.error.main,
+  },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit,
@@ -68,6 +73,7 @@ type State = {
   email?: string,
   password?: string,
   showPassword: boolean,
+  hasErrored: boolean,
 };
 
 class SignIn extends React.Component<Props, State> {
@@ -75,12 +81,16 @@ class SignIn extends React.Component<Props, State> {
     email: undefined,
     password: undefined,
     showPassword: false,
+    hasErrored: false,
   };
   handleChange = field => e => {
-    this.setState({ [field]: e.target.value });
+    this.setState({ hasErrored: false, [field]: e.target.value });
   };
   handleShowPassword = () => {
     this.setState(state => ({ showPassword: !state.showPassword }));
+  };
+  handleError = () => {
+    this.setState({ hasErrored: true });
   };
   handleSubmit = mutation => e => {
     e.preventDefault();
@@ -94,8 +104,17 @@ class SignIn extends React.Component<Props, State> {
     return (
       <main className={classes.main}>
         <Paper className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <PermIdentityIcon fontSize="large" />
+          <Avatar
+            className={classnames({
+              [classes.avatar]: true,
+              [classes.errored]: this.state.hasErrored,
+            })}
+          >
+            {this.state.hasErrored ? (
+              <ErrorOutlineIcon fontSize="large" />
+            ) : (
+              <PermIdentityIcon fontSize="large" />
+            )}
           </Avatar>
           <form className={classes.form}>
             <TextField
@@ -137,7 +156,7 @@ class SignIn extends React.Component<Props, State> {
                 ),
               }}
             />
-            <Mutation mutation={LOGIN}>
+            <Mutation mutation={LOGIN} onError={this.handleError}>
               {(login, { loading }) => {
                 return (
                   <div className={classes.submit}>
