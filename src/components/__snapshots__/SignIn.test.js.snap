@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn snapshot renders correctly 1`] = `
+<main
+  className="SignIn-main-1"
+>
+  <div
+    className="MuiPaper-root-6 MuiPaper-elevation2-10 MuiPaper-rounded-7 SignIn-paper-2"
+  >
+    <div
+      className="MuiAvatar-root-33 MuiAvatar-colorDefault-34 SignIn-avatar-3"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root-36 MuiSvgIcon-fontSizeLarge-44"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
+        />
+        <path
+          d="M0 0h24v24H0z"
+          fill="none"
+        />
+      </svg>
+    </div>
+    <form
+      className="SignIn-form-4"
+    >
+      <div
+        className="MuiFormControl-root-45 MuiFormControl-marginNormal-46 MuiFormControl-fullWidth-48"
+      >
+        <label
+          className="MuiFormLabel-root-60 MuiFormLabel-required-65 MuiInputLabel-required-53 MuiInputLabel-root-49 MuiInputLabel-formControl-54 MuiInputLabel-animated-57 MuiInputLabel-filled-58"
+          data-shrink={false}
+          htmlFor="email"
+        >
+          Email
+          <span
+            className="MuiFormLabel-asterisk-66"
+          >
+             *
+          </span>
+        </label>
+        <div
+          className="MuiInputBase-root-80 MuiFilledInput-root-67 MuiFilledInput-underline-68 MuiInputBase-fullWidth-89 MuiInputBase-formControl-81"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            autoComplete="email"
+            autoFocus={true}
+            className="MuiInputBase-input-90 MuiFilledInput-input-75 MuiInputBase-inputType-93"
+            disabled={false}
+            id="email"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={true}
+            type="email"
+          />
+        </div>
+      </div>
+      <div
+        className="MuiFormControl-root-45 MuiFormControl-marginNormal-46 MuiFormControl-fullWidth-48"
+      >
+        <label
+          className="MuiFormLabel-root-60 MuiFormLabel-required-65 MuiInputLabel-required-53 MuiInputLabel-root-49 MuiInputLabel-formControl-54 MuiInputLabel-animated-57 MuiInputLabel-filled-58"
+          data-shrink={false}
+          htmlFor="password"
+        >
+          Password
+          <span
+            className="MuiFormLabel-asterisk-66"
+          >
+             *
+          </span>
+        </label>
+        <div
+          className="MuiInputBase-root-80 MuiFilledInput-root-67 MuiFilledInput-underline-68 MuiInputBase-fullWidth-89 MuiInputBase-formControl-81 MuiInputBase-adornedEnd-85 MuiFilledInput-adornedEnd-72"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            autoComplete="current-password"
+            className="MuiInputBase-input-90 MuiFilledInput-input-75 MuiInputBase-inputType-93 MuiInputBase-inputAdornedEnd-96 MuiFilledInput-inputAdornedEnd-79"
+            disabled={false}
+            id="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={true}
+            type="password"
+          />
+          <div
+            className="MuiInputAdornment-root-97 MuiInputAdornment-filled-98 MuiInputAdornment-positionEnd-100"
+          >
+            <button
+              aria-label="Toggle password visibility"
+              className="MuiButtonBase-root-108 MuiIconButton-root-102"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onContextMenu={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex="0"
+              type="button"
+            >
+              <span
+                className="MuiIconButton-label-107"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="MuiSvgIcon-root-36"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                  <path
+                    d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                  />
+                </svg>
+              </span>
+              <span
+                className="MuiTouchRipple-root-137"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        className="MuiButtonBase-root-108 MuiButton-root-111 MuiButton-contained-122 MuiButton-containedPrimary-123 MuiButton-raised-125 MuiButton-raisedPrimary-126 MuiButton-fullWidth-136 SignIn-submit-5"
+        disabled={false}
+        onBlur={[Function]}
+        onContextMenu={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="submit"
+      >
+        <span
+          className="MuiButton-label-112"
+        >
+          Sign in
+        </span>
+        <span
+          className="MuiTouchRipple-root-137"
+        />
+      </button>
+    </form>
+  </div>
+</main>
+`;

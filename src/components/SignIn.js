@@ -4,8 +4,12 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme: Object) => ({
@@ -48,9 +52,22 @@ type Props = {
   classes: Object,
 };
 
-type State = {};
+type State = {
+  email?: string,
+  password?: string,
+  showPassword: boolean,
+};
 
 class SignIn extends React.Component<Props, State> {
+  state = {
+    showPassword: false,
+  };
+  handleChange = field => event => {
+    this.setState({ [field]: event.target.value });
+  };
+  handleShowPassword = () => {
+    this.setState(state => ({ showPassword: !state.showPassword }));
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -61,6 +78,7 @@ class SignIn extends React.Component<Props, State> {
           </Avatar>
           <form className={classes.form}>
             <TextField
+              id="email"
               label="Email"
               type="email"
               required
@@ -69,15 +87,34 @@ class SignIn extends React.Component<Props, State> {
               fullWidth
               margin="normal"
               variant="filled"
+              onChange={this.handleChange('email')}
             />
             <TextField
+              id="password"
               label="Password"
-              type="password"
+              type={this.state.showPassword ? 'text' : 'password'}
               required
               autoComplete="current-password"
               fullWidth
               margin="normal"
               variant="filled"
+              onChange={this.handleChange('password')}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="Toggle password visibility"
+                      onClick={this.handleShowPassword}
+                    >
+                      {this.state.showPassword ? (
+                        <VisibilityOffIcon />
+                      ) : (
+                        <VisibilityIcon />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
             <Button
               type="submit"
