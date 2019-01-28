@@ -5,14 +5,14 @@ exports[`SignIn snapshot renders correctly 1`] = `
   className="SignIn-main-1"
 >
   <div
-    className="MuiPaper-root-6 MuiPaper-elevation2-10 MuiPaper-rounded-7 SignIn-paper-2"
+    className="MuiPaper-root-7 MuiPaper-elevation2-11 MuiPaper-rounded-8 SignIn-paper-2"
   >
     <div
-      className="MuiAvatar-root-33 MuiAvatar-colorDefault-34 SignIn-avatar-3"
+      className="MuiAvatar-root-34 MuiAvatar-colorDefault-35 SignIn-avatar-3"
     >
       <svg
         aria-hidden="true"
-        className="MuiSvgIcon-root-36 MuiSvgIcon-fontSizeLarge-44"
+        className="MuiSvgIcon-root-37 MuiSvgIcon-fontSizeLarge-45"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -30,29 +30,29 @@ exports[`SignIn snapshot renders correctly 1`] = `
       className="SignIn-form-4"
     >
       <div
-        className="MuiFormControl-root-45 MuiFormControl-marginNormal-46 MuiFormControl-fullWidth-48"
+        className="MuiFormControl-root-46 MuiFormControl-marginNormal-47 MuiFormControl-fullWidth-49"
       >
         <label
-          className="MuiFormLabel-root-60 MuiFormLabel-required-65 MuiInputLabel-required-53 MuiInputLabel-root-49 MuiInputLabel-formControl-54 MuiInputLabel-animated-57 MuiInputLabel-filled-58"
+          className="MuiFormLabel-root-61 MuiFormLabel-required-66 MuiInputLabel-required-54 MuiInputLabel-root-50 MuiInputLabel-formControl-55 MuiInputLabel-animated-58 MuiInputLabel-filled-59"
           data-shrink={false}
           htmlFor="email"
         >
           Email
           <span
-            className="MuiFormLabel-asterisk-66"
+            className="MuiFormLabel-asterisk-67"
           >
              *
           </span>
         </label>
         <div
-          className="MuiInputBase-root-80 MuiFilledInput-root-67 MuiFilledInput-underline-68 MuiInputBase-fullWidth-89 MuiInputBase-formControl-81"
+          className="MuiInputBase-root-81 MuiFilledInput-root-68 MuiFilledInput-underline-69 MuiInputBase-fullWidth-90 MuiInputBase-formControl-82"
           onClick={[Function]}
         >
           <input
             aria-invalid={false}
             autoComplete="email"
             autoFocus={true}
-            className="MuiInputBase-input-90 MuiFilledInput-input-75 MuiInputBase-inputType-93"
+            className="MuiInputBase-input-91 MuiFilledInput-input-76 MuiInputBase-inputType-94"
             disabled={false}
             id="email"
             onBlur={[Function]}
@@ -64,28 +64,28 @@ exports[`SignIn snapshot renders correctly 1`] = `
         </div>
       </div>
       <div
-        className="MuiFormControl-root-45 MuiFormControl-marginNormal-46 MuiFormControl-fullWidth-48"
+        className="MuiFormControl-root-46 MuiFormControl-marginNormal-47 MuiFormControl-fullWidth-49"
       >
         <label
-          className="MuiFormLabel-root-60 MuiFormLabel-required-65 MuiInputLabel-required-53 MuiInputLabel-root-49 MuiInputLabel-formControl-54 MuiInputLabel-animated-57 MuiInputLabel-filled-58"
+          className="MuiFormLabel-root-61 MuiFormLabel-required-66 MuiInputLabel-required-54 MuiInputLabel-root-50 MuiInputLabel-formControl-55 MuiInputLabel-animated-58 MuiInputLabel-filled-59"
           data-shrink={false}
           htmlFor="password"
         >
           Password
           <span
-            className="MuiFormLabel-asterisk-66"
+            className="MuiFormLabel-asterisk-67"
           >
              *
           </span>
         </label>
         <div
-          className="MuiInputBase-root-80 MuiFilledInput-root-67 MuiFilledInput-underline-68 MuiInputBase-fullWidth-89 MuiInputBase-formControl-81 MuiInputBase-adornedEnd-85 MuiFilledInput-adornedEnd-72"
+          className="MuiInputBase-root-81 MuiFilledInput-root-68 MuiFilledInput-underline-69 MuiInputBase-fullWidth-90 MuiInputBase-formControl-82 MuiInputBase-adornedEnd-86 MuiFilledInput-adornedEnd-73"
           onClick={[Function]}
         >
           <input
             aria-invalid={false}
             autoComplete="current-password"
-            className="MuiInputBase-input-90 MuiFilledInput-input-75 MuiInputBase-inputType-93 MuiInputBase-inputAdornedEnd-96 MuiFilledInput-inputAdornedEnd-79"
+            className="MuiInputBase-input-91 MuiFilledInput-input-76 MuiInputBase-inputType-94 MuiInputBase-inputAdornedEnd-97 MuiFilledInput-inputAdornedEnd-80"
             disabled={false}
             id="password"
             onBlur={[Function]}
@@ -95,11 +95,11 @@ exports[`SignIn snapshot renders correctly 1`] = `
             type="password"
           />
           <div
-            className="MuiInputAdornment-root-97 MuiInputAdornment-filled-98 MuiInputAdornment-positionEnd-100"
+            className="MuiInputAdornment-root-98 MuiInputAdornment-filled-99 MuiInputAdornment-positionEnd-101"
           >
             <button
               aria-label="Toggle password visibility"
-              className="MuiButtonBase-root-108 MuiIconButton-root-102"
+              className="MuiButtonBase-root-109 MuiIconButton-root-103"
               disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
@@ -117,11 +117,11 @@ exports[`SignIn snapshot renders correctly 1`] = `
               type="button"
             >
               <span
-                className="MuiIconButton-label-107"
+                className="MuiIconButton-label-108"
               >
                 <svg
                   aria-hidden="true"
-                  className="MuiSvgIcon-root-36"
+                  className="MuiSvgIcon-root-37"
                   focusable="false"
                   role="presentation"
                   viewBox="0 0 24 24"
@@ -136,38 +136,43 @@ exports[`SignIn snapshot renders correctly 1`] = `
                 </svg>
               </span>
               <span
-                className="MuiTouchRipple-root-137"
+                className="MuiTouchRipple-root-138"
               />
             </button>
           </div>
         </div>
       </div>
-      <button
-        className="MuiButtonBase-root-108 MuiButton-root-111 MuiButton-contained-122 MuiButton-containedPrimary-123 MuiButton-raised-125 MuiButton-raisedPrimary-126 MuiButton-fullWidth-136 SignIn-submit-5"
-        disabled={false}
-        onBlur={[Function]}
-        onContextMenu={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex="0"
-        type="submit"
+      <div
+        className="SignIn-submit-5"
       >
-        <span
-          className="MuiButton-label-112"
+        <button
+          className="MuiButtonBase-root-109 MuiButton-root-112 MuiButton-contained-123 MuiButton-containedPrimary-124 MuiButton-raised-126 MuiButton-raisedPrimary-127 MuiButton-fullWidth-137"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex="0"
+          type="submit"
         >
-          Sign in
-        </span>
-        <span
-          className="MuiTouchRipple-root-137"
-        />
-      </button>
+          <span
+            className="MuiButton-label-113"
+          >
+            Sign in
+          </span>
+          <span
+            className="MuiTouchRipple-root-138"
+          />
+        </button>
+      </div>
     </form>
   </div>
 </main>

@@ -1,8 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { render, fireEvent, cleanup } from 'react-testing-library';
+import withMockedProviders from '../withMockedProviders';
 
-import SignIn from './SignIn';
+import SignInComponent from './SignIn';
+
+const SignIn = withMockedProviders(SignInComponent);
 
 describe('SignIn', () => {
   afterEach(cleanup);
