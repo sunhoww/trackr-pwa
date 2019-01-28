@@ -1,6 +1,6 @@
 {
   "name": "trackr-pwa",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.1",
@@ -30,6 +30,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "flow-bin": "^0.91.0"
+    "flow-bin": "^0.91.0",
+    "react-test-renderer": "^16.7.0",
+    "react-testing-library": "^5.4.4"
   }
 }
