@@ -1,27 +1,16 @@
-// @flow
-
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { Route, Switch } from 'react-router-dom';
 
-import SignIn from '../components/SignIn';
+import Public from './Public';
+import Protected from './Protected';
 
-const styles = (theme: Object) => ({
-  root: {
-    textAlign: 'center',
-    // padding: theme.spacing.unit * 3,
-  },
-});
-
-type Props = {
-  classes: Object,
-};
-
-function Index(props: Props) {
+function Index(props) {
   return (
-    <div className={props.classes.root}>
-      <SignIn />
-    </div>
+    <Switch>
+      <Route path="/auth" component={Public} />
+      <Route exact component={Protected} />
+    </Switch>
   );
 }
 
-export default withStyles(styles)(Index);
+export default Index;
