@@ -1,12 +1,13 @@
 // @flow
 
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link as RouterLink } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 
 import SignIn from '../components/SignIn';
+import Register from '../components/Register';
 import NotFound from '../components/NotFound';
 
 const styles = (theme: Object) => ({
@@ -29,6 +30,10 @@ const styles = (theme: Object) => ({
       marginRight: 'auto',
     },
   },
+  links: {
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
+  },
 });
 
 type Props = {
@@ -40,9 +45,34 @@ const Public = ({ classes, match }: Props) => (
   <div className={classes.root}>
     <main className={classes.main}>
       <Switch>
+        <Route path={`${match.path}/register`} component={Register} />
         <Route exact path={match.path} component={SignIn} />
         <Route component={NotFound} />
       </Switch>
+      <Typography
+        className={classes.links}
+        align="center"
+        gutterBottom
+        variant="body1"
+      >
+        <Route
+          exact
+          path={match.path}
+          render={() => (
+            <Link component={RouterLink} to={`${match.path}/register`}>
+              I don't have an account yet.
+            </Link>
+          )}
+        />
+        <Route
+          path={`${match.path}/register`}
+          render={() => (
+            <Link component={RouterLink} to={match.path}>
+              I want to sign in.
+            </Link>
+          )}
+        />
+      </Typography>
     </main>
     <Typography
       component="footer"
