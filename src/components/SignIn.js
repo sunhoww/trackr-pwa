@@ -8,7 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import PersonIcon from '@material-ui/icons/Person';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
@@ -19,7 +19,7 @@ import { Mutation } from 'react-apollo';
 
 import { LOGIN } from '../graphql/queries';
 
-const styles = (theme: Object) => ({
+export const styles = (theme: Object) => ({
   paper: {
     display: 'flex',
     flexDirection: 'column',
@@ -111,7 +111,7 @@ class SignIn extends React.Component<Props, State> {
           {this.state.hasErrored ? (
             <ErrorOutlineIcon fontSize="large" />
           ) : (
-            <PermIdentityIcon fontSize="large" />
+            <PersonIcon fontSize="large" />
           )}
         </Avatar>
         <form className={classes.form}>
