@@ -14,25 +14,13 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
+import { Redirect } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 
 import { LOGIN } from '../graphql/queries';
 
 const styles = (theme: Object) => ({
-  main: {
-    width: 'auto',
-    display: 'block', // Fix IE 11 issue.
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
   paper: {
-    marginTop: theme.spacing.unit * 8,
-    marginBottom: theme.spacing.unit * 8,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -67,6 +55,7 @@ const styles = (theme: Object) => ({
 
 type Props = {
   classes: Object,
+  location: Object,
 };
 
 type State = {
@@ -74,6 +63,7 @@ type State = {
   password?: string,
   showPassword: boolean,
   hasErrored: boolean,
+  willRedirect: boolean,
 };
 
 class SignIn extends React.Component<Props, State> {
@@ -82,8 +72,9 @@ class SignIn extends React.Component<Props, State> {
     password: undefined,
     showPassword: false,
     hasErrored: false,
+    willRedirect: false,
   };
-  handleChange = field => e => {
+  handleChange = (field: string) => e => {
     this.setState({ hasErrored: false, [field]: e.target.value });
   };
   handleShowPassword = () => {
@@ -99,90 +90,98 @@ class SignIn extends React.Component<Props, State> {
       mutation({ variables: { email, password } });
     }
   };
+  handleSuccess = cache => {
+    cache.writeData({ data: { authed: true } });
+    this.setState({ willRedirect: true });
+  };
   render() {
     const { classes } = this.props;
+    if (this.state.willRedirect) {
+      const { from } = this.props.location.state || { from: { pathname: '/' } };
+      return <Redirect to={from} />;
+    }
     return (
-      <main className={classes.main}>
-        <Paper className={classes.paper}>
-          <Avatar
-            className={classnames({
-              [classes.avatar]: true,
-              [classes.errored]: this.state.hasErrored,
-            })}
-          >
-            {this.state.hasErrored ? (
-              <ErrorOutlineIcon fontSize="large" />
-            ) : (
-              <PermIdentityIcon fontSize="large" />
-            )}
-          </Avatar>
-          <form className={classes.form}>
-            <TextField
-              id="email"
-              label="Email"
-              type="email"
-              required
-              autoComplete="email"
-              autoFocus
-              fullWidth
-              margin="normal"
-              variant="filled"
-              onChange={this.handleChange('email')}
-            />
-            <TextField
-              id="password"
-              label="Password"
-              type={this.state.showPassword ? 'text' : 'password'}
-              required
-              autoComplete="current-password"
-              fullWidth
-              margin="normal"
-              variant="filled"
-              onChange={this.handleChange('password')}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="Toggle password visibility"
-                      onClick={this.handleShowPassword}
-                    >
-                      {this.state.showPassword ? (
-                        <VisibilityOffIcon />
-                      ) : (
-                        <VisibilityIcon />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <Mutation mutation={LOGIN} onError={this.handleError}>
-              {(login, { loading }) => {
-                return (
-                  <div className={classes.submit}>
-                    <Button
-                      type="submit"
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                      disabled={loading}
-                      onClick={this.handleSubmit(login)}
-                    >
-                      Sign in
-                    </Button>
-                    {loading && (
-                      <CircularProgress
-                        size={24}
-                        className={classes.submitProgress}
-                      />
+      <Paper className={classes.paper}>
+        <Avatar
+          className={classnames({
+            [classes.avatar]: true,
+            [classes.errored]: this.state.hasErrored,
+          })}
+        >
+          {this.state.hasErrored ? (
+            <ErrorOutlineIcon fontSize="large" />
+          ) : (
+            <PermIdentityIcon fontSize="large" />
+          )}
+        </Avatar>
+        <form className={classes.form}>
+          <TextField
+            id="email"
+            label="Email"
+            type="email"
+            required
+            autoComplete="email"
+            autoFocus
+            fullWidth
+            margin="normal"
+            variant="filled"
+            onChange={this.handleChange('email')}
+          />
+          <TextField
+            id="password"
+            label="Password"
+            type={this.state.showPassword ? 'text' : 'password'}
+            required
+            autoComplete="current-password"
+            fullWidth
+            margin="normal"
+            variant="filled"
+            onChange={this.handleChange('password')}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleShowPassword}
+                  >
+                    {this.state.showPassword ? (
+                      <VisibilityOffIcon />
+                    ) : (
+                      <VisibilityIcon />
                     )}
-                  </div>
-                );
-              }}
-            </Mutation>
-          </form>
-        </Paper>
-      </main>
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Mutation
+            mutation={LOGIN}
+            update={this.handleSuccess}
+            onError={this.handleError}
+          >
+            {(login, { loading }) => (
+              <div className={classes.submit}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  disabled={loading}
+                  onClick={this.handleSubmit(login)}
+                >
+                  Sign in
+                </Button>
+                {loading && (
+                  <CircularProgress
+                    size={24}
+                    className={classes.submitProgress}
+                  />
+                )}
+              </div>
+            )}
+          </Mutation>
+        </form>
+      </Paper>
     );
   }
 }

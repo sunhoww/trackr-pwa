@@ -1,179 +1,175 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SignIn snapshot renders correctly 1`] = `
-<main
-  className="SignIn-main-1"
+<div
+  className="MuiPaper-root-7 MuiPaper-elevation2-11 MuiPaper-rounded-8 SignIn-paper-1"
 >
   <div
-    className="MuiPaper-root-8 MuiPaper-elevation2-12 MuiPaper-rounded-9 SignIn-paper-2"
+    className="MuiAvatar-root-34 MuiAvatar-colorDefault-35 SignIn-avatar-2"
+  >
+    <svg
+      aria-hidden="true"
+      className="MuiSvgIcon-root-37 MuiSvgIcon-fontSizeLarge-45"
+      focusable="false"
+      role="presentation"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
+      />
+      <path
+        d="M0 0h24v24H0z"
+        fill="none"
+      />
+    </svg>
+  </div>
+  <form
+    className="SignIn-form-4"
   >
     <div
-      className="MuiAvatar-root-35 MuiAvatar-colorDefault-36 SignIn-avatar-3"
+      className="MuiFormControl-root-46 MuiFormControl-marginNormal-47 MuiFormControl-fullWidth-49"
     >
-      <svg
-        aria-hidden="true"
-        className="MuiSvgIcon-root-38 MuiSvgIcon-fontSizeLarge-46"
-        focusable="false"
-        role="presentation"
-        viewBox="0 0 24 24"
+      <label
+        className="MuiFormLabel-root-61 MuiFormLabel-required-66 MuiInputLabel-required-54 MuiInputLabel-root-50 MuiInputLabel-formControl-55 MuiInputLabel-animated-58 MuiInputLabel-filled-59"
+        data-shrink={false}
+        htmlFor="email"
       >
-        <path
-          d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"
-        />
-        <path
-          d="M0 0h24v24H0z"
-          fill="none"
-        />
-      </svg>
-    </div>
-    <form
-      className="SignIn-form-5"
-    >
+        Email
+        <span
+          className="MuiFormLabel-asterisk-67"
+        >
+           *
+        </span>
+      </label>
       <div
-        className="MuiFormControl-root-47 MuiFormControl-marginNormal-48 MuiFormControl-fullWidth-50"
+        className="MuiInputBase-root-81 MuiFilledInput-root-68 MuiFilledInput-underline-69 MuiInputBase-fullWidth-90 MuiInputBase-formControl-82"
+        onClick={[Function]}
       >
-        <label
-          className="MuiFormLabel-root-62 MuiFormLabel-required-67 MuiInputLabel-required-55 MuiInputLabel-root-51 MuiInputLabel-formControl-56 MuiInputLabel-animated-59 MuiInputLabel-filled-60"
-          data-shrink={false}
-          htmlFor="email"
-        >
-          Email
-          <span
-            className="MuiFormLabel-asterisk-68"
-          >
-             *
-          </span>
-        </label>
-        <div
-          className="MuiInputBase-root-82 MuiFilledInput-root-69 MuiFilledInput-underline-70 MuiInputBase-fullWidth-91 MuiInputBase-formControl-83"
-          onClick={[Function]}
-        >
-          <input
-            aria-invalid={false}
-            autoComplete="email"
-            autoFocus={true}
-            className="MuiInputBase-input-92 MuiFilledInput-input-77 MuiInputBase-inputType-95"
-            disabled={false}
-            id="email"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            required={true}
-            type="email"
-          />
-        </div>
-      </div>
-      <div
-        className="MuiFormControl-root-47 MuiFormControl-marginNormal-48 MuiFormControl-fullWidth-50"
-      >
-        <label
-          className="MuiFormLabel-root-62 MuiFormLabel-required-67 MuiInputLabel-required-55 MuiInputLabel-root-51 MuiInputLabel-formControl-56 MuiInputLabel-animated-59 MuiInputLabel-filled-60"
-          data-shrink={false}
-          htmlFor="password"
-        >
-          Password
-          <span
-            className="MuiFormLabel-asterisk-68"
-          >
-             *
-          </span>
-        </label>
-        <div
-          className="MuiInputBase-root-82 MuiFilledInput-root-69 MuiFilledInput-underline-70 MuiInputBase-fullWidth-91 MuiInputBase-formControl-83 MuiInputBase-adornedEnd-87 MuiFilledInput-adornedEnd-74"
-          onClick={[Function]}
-        >
-          <input
-            aria-invalid={false}
-            autoComplete="current-password"
-            className="MuiInputBase-input-92 MuiFilledInput-input-77 MuiInputBase-inputType-95 MuiInputBase-inputAdornedEnd-98 MuiFilledInput-inputAdornedEnd-81"
-            disabled={false}
-            id="password"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            required={true}
-            type="password"
-          />
-          <div
-            className="MuiInputAdornment-root-99 MuiInputAdornment-filled-100 MuiInputAdornment-positionEnd-102"
-          >
-            <button
-              aria-label="Toggle password visibility"
-              className="MuiButtonBase-root-110 MuiIconButton-root-104"
-              disabled={false}
-              onBlur={[Function]}
-              onClick={[Function]}
-              onContextMenu={[Function]}
-              onFocus={[Function]}
-              onKeyDown={[Function]}
-              onKeyUp={[Function]}
-              onMouseDown={[Function]}
-              onMouseLeave={[Function]}
-              onMouseUp={[Function]}
-              onTouchEnd={[Function]}
-              onTouchMove={[Function]}
-              onTouchStart={[Function]}
-              tabIndex="0"
-              type="button"
-            >
-              <span
-                className="MuiIconButton-label-109"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="MuiSvgIcon-root-38"
-                  focusable="false"
-                  role="presentation"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M0 0h24v24H0z"
-                    fill="none"
-                  />
-                  <path
-                    d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
-                  />
-                </svg>
-              </span>
-              <span
-                className="MuiTouchRipple-root-139"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        className="SignIn-submit-6"
-      >
-        <button
-          className="MuiButtonBase-root-110 MuiButton-root-113 MuiButton-contained-124 MuiButton-containedPrimary-125 MuiButton-raised-127 MuiButton-raisedPrimary-128 MuiButton-fullWidth-138"
+        <input
+          aria-invalid={false}
+          autoComplete="email"
+          autoFocus={true}
+          className="MuiInputBase-input-91 MuiFilledInput-input-76 MuiInputBase-inputType-94"
           disabled={false}
+          id="email"
           onBlur={[Function]}
-          onClick={[Function]}
-          onContextMenu={[Function]}
+          onChange={[Function]}
           onFocus={[Function]}
-          onKeyDown={[Function]}
-          onKeyUp={[Function]}
-          onMouseDown={[Function]}
-          onMouseLeave={[Function]}
-          onMouseUp={[Function]}
-          onTouchEnd={[Function]}
-          onTouchMove={[Function]}
-          onTouchStart={[Function]}
-          tabIndex="0"
-          type="submit"
-        >
-          <span
-            className="MuiButton-label-114"
-          >
-            Sign in
-          </span>
-          <span
-            className="MuiTouchRipple-root-139"
-          />
-        </button>
+          required={true}
+          type="email"
+        />
       </div>
-    </form>
-  </div>
-</main>
+    </div>
+    <div
+      className="MuiFormControl-root-46 MuiFormControl-marginNormal-47 MuiFormControl-fullWidth-49"
+    >
+      <label
+        className="MuiFormLabel-root-61 MuiFormLabel-required-66 MuiInputLabel-required-54 MuiInputLabel-root-50 MuiInputLabel-formControl-55 MuiInputLabel-animated-58 MuiInputLabel-filled-59"
+        data-shrink={false}
+        htmlFor="password"
+      >
+        Password
+        <span
+          className="MuiFormLabel-asterisk-67"
+        >
+           *
+        </span>
+      </label>
+      <div
+        className="MuiInputBase-root-81 MuiFilledInput-root-68 MuiFilledInput-underline-69 MuiInputBase-fullWidth-90 MuiInputBase-formControl-82 MuiInputBase-adornedEnd-86 MuiFilledInput-adornedEnd-73"
+        onClick={[Function]}
+      >
+        <input
+          aria-invalid={false}
+          autoComplete="current-password"
+          className="MuiInputBase-input-91 MuiFilledInput-input-76 MuiInputBase-inputType-94 MuiInputBase-inputAdornedEnd-97 MuiFilledInput-inputAdornedEnd-80"
+          disabled={false}
+          id="password"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          required={true}
+          type="password"
+        />
+        <div
+          className="MuiInputAdornment-root-98 MuiInputAdornment-filled-99 MuiInputAdornment-positionEnd-101"
+        >
+          <button
+            aria-label="Toggle password visibility"
+            className="MuiButtonBase-root-109 MuiIconButton-root-103"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onContextMenu={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex="0"
+            type="button"
+          >
+            <span
+              className="MuiIconButton-label-108"
+            >
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root-37"
+                focusable="false"
+                role="presentation"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M0 0h24v24H0z"
+                  fill="none"
+                />
+                <path
+                  d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                />
+              </svg>
+            </span>
+            <span
+              className="MuiTouchRipple-root-138"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="SignIn-submit-5"
+    >
+      <button
+        className="MuiButtonBase-root-109 MuiButton-root-112 MuiButton-contained-123 MuiButton-containedPrimary-124 MuiButton-raised-126 MuiButton-raisedPrimary-127 MuiButton-fullWidth-137"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="submit"
+      >
+        <span
+          className="MuiButton-label-113"
+        >
+          Sign in
+        </span>
+        <span
+          className="MuiTouchRipple-root-138"
+        />
+      </button>
+    </div>
+  </form>
+</div>
 `;
