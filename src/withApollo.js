@@ -2,16 +2,20 @@
 
 import React from 'react';
 import type { ComponentType } from 'react';
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
+import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
-const cache = new InMemoryCache();
-const link = new HttpLink({
+import resolvers, { defaults } from './graphql/resolvers';
+import typeDefs from './graphql/typeDefs';
+
+const client = new ApolloClient({
   uri: 'http://graphql.docker.localhost/',
+  clientState: {
+    defaults,
+    resolvers,
+    typeDefs,
+  },
 });
-const client = new ApolloClient({ cache, link });
 
 export default function(Component: ComponentType<any>) {
   function WithApollo(props: Object) {
