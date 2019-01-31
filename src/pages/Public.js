@@ -4,6 +4,7 @@ import React from 'react';
 import { Route, Switch, Link as RouterLink, Redirect } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 import { Query } from 'react-apollo';
 
@@ -32,6 +33,10 @@ const styles = (theme: Object) => ({
       marginRight: 'auto',
     },
   },
+  loading: {
+    textAlign: 'center',
+    paddingTop: theme.spacing.unit * 3,
+  },
   links: {
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 3,
@@ -49,6 +54,13 @@ const Public = ({ classes, match, location }: Props) => (
     <main className={classes.main}>
       <Query query={SESSION}>
         {({ data, loading }) => {
+          if (loading) {
+            return (
+              <div className={classes.loading}>
+                <CircularProgress size={64} />
+              </div>
+            );
+          }
           if (data && data.me) {
             const { from } = location.state || { from: { pathname: '/' } };
             return <Redirect to={from} />;
