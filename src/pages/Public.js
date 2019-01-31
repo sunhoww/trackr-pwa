@@ -1,14 +1,16 @@
 // @flow
 
 import React from 'react';
-import { Route, Switch, Link as RouterLink } from 'react-router-dom';
+import { Route, Switch, Link as RouterLink, Redirect } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
+import { Query } from 'react-apollo';
 
 import SignIn from '../components/SignIn';
 import Register from '../components/Register';
 import NotFound from '../components/NotFound';
+import { SESSION } from '../graphql/queries';
 
 const styles = (theme: Object) => ({
   root: {
@@ -39,40 +41,53 @@ const styles = (theme: Object) => ({
 type Props = {
   classes: Object,
   match: Object,
+  location: Object,
 };
 
-const Public = ({ classes, match }: Props) => (
+const Public = ({ classes, match, location }: Props) => (
   <div className={classes.root}>
     <main className={classes.main}>
-      <Switch>
-        <Route path={`${match.path}/register`} component={Register} />
-        <Route exact path={match.path} component={SignIn} />
-        <Route component={NotFound} />
-      </Switch>
-      <Typography
-        className={classes.links}
-        align="center"
-        gutterBottom
-        variant="body1"
-      >
-        <Route
-          exact
-          path={match.path}
-          render={() => (
-            <Link component={RouterLink} to={`${match.path}/register`}>
-              I don't have an account yet.
-            </Link>
-          )}
-        />
-        <Route
-          path={`${match.path}/register`}
-          render={() => (
-            <Link component={RouterLink} to={match.path}>
-              I want to sign in.
-            </Link>
-          )}
-        />
-      </Typography>
+      <Query query={SESSION}>
+        {({ data, loading }) => {
+          if (data && data.me) {
+            const { from } = location.state || { from: { pathname: '/' } };
+            return <Redirect to={from} />;
+          }
+          return (
+            <React.Fragment>
+              <Switch>
+                <Route path={`${match.path}/register`} component={Register} />
+                <Route exact path={match.path} component={SignIn} />
+                <Route component={NotFound} />
+              </Switch>
+              <Typography
+                className={classes.links}
+                align="center"
+                gutterBottom
+                variant="body1"
+              >
+                <Route
+                  exact
+                  path={match.path}
+                  render={() => (
+                    <Link component={RouterLink} to={`${match.path}/register`}>
+                      I don't have an account yet.
+                    </Link>
+                  )}
+                />
+                <Route
+                  path={`${match.path}/register`}
+                  render={() => (
+                    <Link component={RouterLink} to={match.path}>
+                      I want to sign in.
+                    </Link>
+                  )}
+                />
+              </Typography>
+            </React.Fragment>
+          );
+        }}
+      </Query>
     </main>
     <Typography
       component="footer"

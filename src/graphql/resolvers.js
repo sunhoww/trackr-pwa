@@ -1,6 +1,4 @@
-export const defaults = {
-  authed: false,
-};
+export const defaults = {};
 
 const resolvers = {};
 

@@ -1,7 +1,3 @@
-const typeDefs = `
-type Query {
-  authed: Boolean!
-}
-`;
+const typeDefs = ``;
 
 export default typeDefs;
