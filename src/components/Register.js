@@ -16,7 +16,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import { Mutation } from 'react-apollo';
 
-import { CREATE_USER } from '../graphql/queries';
+import { SIGN_UP, SESSION } from '../graphql/queries';
 import { styles } from './SignIn';
 
 type Props = {
@@ -58,11 +58,12 @@ class Register extends React.Component<Props, State> {
     if (password !== passwordConfirm) {
       this.handleError();
     } else if (name && email && password) {
-      mutation({ variables: { email, password } });
+      mutation({ variables: { name, email, password } });
     }
   };
-  handleSuccess = cache => {
-    cache.writeData({ data: { authed: true } });
+  handleSuccess = (cache, { data }) => {
+    const { me } = data.signUp;
+    cache.writeQuery({ query: SESSION, data: { me } });
     this.setState({ willRedirect: true });
   };
   render() {
@@ -141,11 +142,11 @@ class Register extends React.Component<Props, State> {
             onChange={this.handleChange('passwordConfirm')}
           />
           <Mutation
-            mutation={CREATE_USER}
+            mutation={SIGN_UP}
             update={this.handleSuccess}
             onError={this.handleError}
           >
-            {(createUser, { loading }) => (
+            {(signUp, { loading }) => (
               <div className={classes.submit}>
                 <Button
                   type="submit"
@@ -153,7 +154,7 @@ class Register extends React.Component<Props, State> {
                   variant="contained"
                   color="primary"
                   disabled={loading}
-                  onClick={this.handleSubmit(createUser)}
+                  onClick={this.handleSubmit(signUp)}
                 >
                   Sign Up
                 </Button>
