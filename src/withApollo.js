@@ -10,11 +10,8 @@ import typeDefs from './graphql/typeDefs';
 
 const client = new ApolloClient({
   uri: 'http://graphql.docker.localhost/',
-  clientState: {
-    defaults,
-    resolvers,
-    typeDefs,
-  },
+  credentials: 'include',
+  clientState: { defaults, resolvers, typeDefs },
 });
 
 export default function(Component: ComponentType<any>) {
