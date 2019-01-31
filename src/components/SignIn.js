@@ -17,7 +17,7 @@ import classnames from 'classnames';
 import { Redirect } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 
-import { LOGIN } from '../graphql/queries';
+import { LOGIN, SESSION } from '../graphql/queries';
 
 export const styles = (theme: Object) => ({
   paper: {
@@ -90,14 +90,15 @@ class SignIn extends React.Component<Props, State> {
       mutation({ variables: { email, password } });
     }
   };
-  handleSuccess = cache => {
-    cache.writeData({ data: { authed: true } });
+  handleSuccess = (cache, { data }) => {
+    const { me } = data.login;
+    cache.writeQuery({ query: SESSION, data: { me } });
     this.setState({ willRedirect: true });
   };
   render() {
-    const { classes } = this.props;
+    const { classes, location } = this.props;
     if (this.state.willRedirect) {
-      const { from } = this.props.location.state || { from: { pathname: '/' } };
+      const { from } = location.state || { from: { pathname: '/' } };
       return <Redirect to={from} />;
     }
     return (

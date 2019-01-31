@@ -12,8 +12,12 @@ export const SESSION = gql`
 
 export const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      accessToken
+    login(input: { email: $email, password: $password }) {
+      me {
+        id
+        email
+        name
+      }
     }
   }
 `;
