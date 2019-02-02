@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { render, fireEvent, cleanup } from 'react-testing-library';
-import withMockedProviders from '../withMockedProviders';
+import withMockedProviders from '../utils/withMockedProviders';
 
 import SignInComponent from './SignIn';
 
