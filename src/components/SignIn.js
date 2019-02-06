@@ -91,8 +91,7 @@ class SignIn extends React.Component<Props, State> {
     }
   };
   handleSuccess = (cache, { data }) => {
-    const { me } = data.login;
-    cache.writeQuery({ query: SESSION, data: { me } });
+    cache.writeQuery({ query: SESSION, data: { me: data.login } });
     this.setState({ willRedirect: true });
   };
   render() {
