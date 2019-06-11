@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useState } from 'react';
-import { Route, Switch, Link as RouterLink, Redirect } from 'react-router-dom';
+import { Route, Link as RouterLink, Redirect } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
@@ -22,17 +22,25 @@ import useStyles from './styles';
 
 type Props = {
   match: Object,
+  location: Object,
 };
 
-export default function SignInPage({ match }: Props) {
+export default function SignInPage({ match, location }: Props) {
   const classes = useStyles();
   const [error, setError] = useState({
     hasErrored: false,
     message: null,
   });
 
+  const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+
   function resetError() {
     setError({ hasErrored: false, message: null });
+  }
+
+  if (redirectToReferrer) {
+    const { from } = location.state || { from: { pathname: '/' } };
+    return <Redirect to={from} />;
   }
 
   return (
@@ -70,6 +78,7 @@ export default function SignInPage({ match }: Props) {
                 setErrorMessage={message =>
                   setError({ hasErrored: true, message })
                 }
+                onSuccess={() => setRedirectToReferrer(true)}
               />
             )}
           />

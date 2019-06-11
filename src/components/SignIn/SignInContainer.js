@@ -14,10 +14,11 @@ import { AUTH_WITH_PASSWORD } from '../../graphql/queries';
 import useStyles from './styles';
 
 type Props = {
+  onSuccess: Function,
   setErrorMessage: Function,
 };
 
-export default function SignInView({ setErrorMessage }: Props) {
+export default function SignInView({ onSuccess, setErrorMessage }: Props) {
   const classes = useStyles();
   const [fields, setFields] = useState({ email: null, password: null });
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -76,6 +77,7 @@ export default function SignInView({ setErrorMessage }: Props) {
       <Mutation
         mutation={AUTH_WITH_PASSWORD}
         errorPolicy="all"
+        onCompleted={onSuccess}
         onError={({ networkError }) => setErrorMessage(networkError.message)}
       >
         {(mutation, { loading }) => (
