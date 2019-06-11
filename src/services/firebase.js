@@ -2,6 +2,7 @@
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import gql from 'graphql-tag';
 
 import client from './apollo';
 import { SESSION, CREATE_SESSION } from '../graphql/queries';
@@ -14,14 +15,19 @@ firebase.initializeApp(firebaseConfig);
 
 firebase.auth().onAuthStateChanged(async user => {
   if (user) {
-    const {
-      data: { createSession },
-    } = await client.mutate({ mutation: CREATE_SESSION });
-    const { traccarSessionId, me } = createSession || {};
-    client.writeData({ data: { isAuthed: true, traccarSessionId } });
-    client.writeQuery({ query: SESSION, data: { me } });
+    const { isManualAuth } = await client.readQuery({
+      query: gql(`{ isManualAuth @client }`),
+    });
+    if (!isManualAuth) {
+      const {
+        data: { createSession },
+      } = await client.mutate({ mutation: CREATE_SESSION });
+      const { traccarSessionId, me } = createSession || {};
+      client.writeData({ data: { isAuthed: true, traccarSessionId } });
+      client.writeQuery({ query: SESSION, data: { me } });
+    }
   } else {
-    client.resetStore();
+    await client.resetStore();
   }
   client.writeData({ data: { authCompleted: true } });
 });

@@ -1,11 +1,12 @@
 import gql from 'graphql-tag';
 import firebase from 'firebase/app';
 
-import { DELETE_SESSION } from './queries';
+import { CREATE_SESSION, DELETE_SESSION } from './queries';
 
 export const typeDef = gql`
   extend type Query {
     isAuthed: Boolean
+    isManualAuth: Boolean
     authCompleted: Boolean
     traccarSessionId: String
   }
@@ -28,24 +29,36 @@ export const typeDef = gql`
   }
 `;
 
-// traccar mutations are handled by onAuthStateChanged in services/firebase
+async function createSession(client) {
+  const {
+    data: { createSession },
+  } = await client.mutate({ mutation: CREATE_SESSION });
+  const { traccarSessionId } = createSession || {};
+  client.writeData({ data: { isAuthed: true, traccarSessionId } });
+}
+
 export const resolvers = {
   Mutation: {
-    authWithPassword: async (_, { input }) => {
+    authWithPassword: async (_, { input }, { client }) => {
+      await client.writeData({ data: { isManualAuth: true } });
       const { email, password } = input;
       await firebase.auth().signInWithEmailAndPassword(email, password);
+      await createSession(client);
     },
     signOut: async (_, __, { client }) => {
-      // traccar mutation is required server requires access to idToken for the request
       await client.mutate({ mutation: DELETE_SESSION });
       await firebase.auth().signOut();
     },
     registerWithPassword: async (_, { input }, { client }) => {
+      await client.writeData({ data: { isManualAuth: true } });
       const { email, name, password } = input;
       const { user } = await firebase
         .auth()
         .createUserWithEmailAndPassword(email, password);
-      user.updateProfile({ displayName: name });
+      await user.updateProfile({ displayName: name });
+      const forceRefresh = true;
+      await user.getIdToken(forceRefresh);
+      await createSession(client);
     },
   },
 };
