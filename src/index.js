@@ -6,11 +6,16 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { withApollo } from './services/apollo';
-import withRouter from './withRouter';
-import withMaterial from './withMaterial';
+import { withRouter } from './config/router';
+import { withMaterial } from './config/material';
 import './services/firebase';
+import { compose } from 'ramda';
 
-const Root = withApollo(withRouter(withMaterial(App)));
+const Root = compose(
+  withApollo,
+  withRouter,
+  withMaterial
+)(App);
 
 // $FlowIgnore
 ReactDOM.render(<Root />, document.getElementById('root'));

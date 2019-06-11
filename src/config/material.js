@@ -17,7 +17,7 @@ const theme = createMuiTheme({
   },
 });
 
-export default function(Component: ComponentType<any>) {
+export function withMaterial(Component: ComponentType<any>) {
   function WithMaterial(props: Object) {
     return (
       <MuiThemeProvider theme={theme}>
