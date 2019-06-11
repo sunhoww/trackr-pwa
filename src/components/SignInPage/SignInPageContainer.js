@@ -18,6 +18,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import clsx from 'clsx';
 
 import SignIn from '../SignIn';
+import Register from '../Register';
 import useStyles from './styles';
 
 type Props = {
@@ -84,7 +85,15 @@ export default function SignInPage({ match, location }: Props) {
           />
           <Route
             path={`${match.path}/register`}
-            render={() => <h1>Register</h1>}
+            render={props => (
+              <Register
+                {...props}
+                setErrorMessage={message =>
+                  setError({ hasErrored: true, message })
+                }
+                onSuccess={() => setRedirectToReferrer(true)}
+              />
+            )}
           />
         </Paper>
         <Typography
