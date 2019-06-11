@@ -9,26 +9,9 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { AUTH_WITH_PASSWORD } from '../../graphql/queries';
-
-const useStyles = makeStyles((theme: Object) => ({
-  form: {
-    width: '100%',
-  },
-  submit: {
-    marginTop: theme.spacing(3),
-    position: 'relative',
-  },
-  submitProgress: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginTop: -12,
-    marginLeft: -12,
-  },
-}));
+import useStyles from './styles';
 
 type Props = {
   setErrorMessage: Function,
@@ -105,7 +88,7 @@ export default function SignInView({ setErrorMessage }: Props) {
               disabled={loading}
               onClick={handleSubmit(mutation)}
             >
-              Sign in
+              Sign In
             </Button>
             {loading && (
               <CircularProgress size={24} className={classes.submitProgress} />
