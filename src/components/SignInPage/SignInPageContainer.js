@@ -2,19 +2,23 @@
 
 import React, { useState } from 'react';
 import { Route, Link as RouterLink, Redirect } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Avatar from '@material-ui/core/Avatar';
-import Link from '@material-ui/core/Link';
-import Snackbar from '@material-ui/core/Snackbar';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
-import IconButton from '@material-ui/core/IconButton';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
-import ErrorIcon from '@material-ui/icons/Error';
-import CloseIcon from '@material-ui/icons/Close';
+import {
+  Container,
+  Typography,
+  Paper,
+  Avatar,
+  Link,
+  Snackbar,
+  SnackbarContent,
+  IconButton,
+} from '@material-ui/core';
+import {
+  ErrorOutline as ErrorOutlineIcon,
+  Person as PersonIcon,
+  Add as AddIcon,
+  Error as ErrorIcon,
+  Close as CloseIcon,
+} from '@material-ui/icons';
 import clsx from 'clsx';
 
 import SignIn from '../SignIn';

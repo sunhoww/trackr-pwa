@@ -2,13 +2,17 @@
 
 import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import {
+  TextField,
+  InputAdornment,
+  IconButton,
+  Button,
+  CircularProgress,
+} from '@material-ui/core';
+import {
+  Visibility as VisibilityIcon,
+  VisibilityOff as VisibilityOffIcon,
+} from '@material-ui/icons';
 
 import { REGISTER_WITH_PASSWORD } from '../../graphql/queries';
 import useStyles from '../SignIn/styles';
