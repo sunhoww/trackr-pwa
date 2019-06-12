@@ -7,7 +7,6 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Hidden,
   Drawer,
   Container,
   Divider,
