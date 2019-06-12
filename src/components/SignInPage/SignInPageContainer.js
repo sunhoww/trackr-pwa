@@ -53,8 +53,7 @@ export default function SignInPage({ match, location }: Props) {
       <Container className={classes.main} component="main" maxWidth="xs">
         <Paper className={classes.paper}>
           <Avatar
-            className={clsx({
-              [classes.avatar]: true,
+            className={clsx(classes.avatar, {
               [classes.errorAvatar]: error.hasErrored,
             })}
           >
