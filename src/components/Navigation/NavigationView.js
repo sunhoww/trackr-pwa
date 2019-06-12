@@ -5,7 +5,7 @@ import { List, Divider } from '@material-ui/core';
 import {
   Place as PlaceIcon,
   Settings as SettingsIcon,
-  Info as InfoIcon,
+  InfoOutlined as InfoIcon,
 } from '@material-ui/icons';
 
 import ListItemLink from './ListItemLink';
