@@ -1,30 +1,38 @@
 // @flow
 
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 
-const styles = (theme: Object) => ({
-  h1: {
-    marginBottom: theme.spacing.unit * 4,
+const useStyles = makeStyles((theme: Object) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-});
+  text: {
+    color: theme.palette.action.disabled,
+  },
+}));
 
 type Props = {
-  classes: Object,
+  className: String,
 };
 
-const NotFound = ({ classes }: Props) => (
-  <React.Fragment>
-    <Typography className={classes.h1} component="h1" variant="h1">
-      404
-    </Typography>
-    <Button variant="outlined" color="primary" component={Link} to="/">
-      Home
-    </Button>
-  </React.Fragment>
-);
-
-export default withStyles(styles)(NotFound);
+export default function NotFound({ className }: Props) {
+  const classes = useStyles();
+  return (
+    <div className={clsx(className, classes.root)}>
+      <Typography className={classes.text} variant="h3" gutterBottom>
+        <span role="img" aria-label="not found">
+          😬
+        </span>
+      </Typography>
+      <Typography className={classes.text} variant="body1">
+        Nothing to see here.
+      </Typography>
+    </div>
+  );
+}
