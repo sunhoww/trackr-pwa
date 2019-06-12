@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme: Object) => ({
   },
   main: {
     flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
     [theme.breakpoints.up('sm')]: {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.sharp,
@@ -73,7 +76,6 @@ const useStyles = makeStyles((theme: Object) => ({
       marginLeft: 0,
     },
   },
-  toolbarOffset: theme.mixins.toolbar,
   drawer: {
     flexShrink: 0,
     width: `calc(100vw - ${theme.spacing(12)}px)`,
@@ -86,6 +88,10 @@ const useStyles = makeStyles((theme: Object) => ({
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
     },
+  },
+  toolbarOffset: theme.mixins.toolbar,
+  notFound: {
+    flexGrow: 1,
   },
 }));
 
@@ -149,7 +155,9 @@ export default function DashboardView() {
         })}
       >
         <div className={classes.toolbarOffset} />
-        <Route component={NotFound} />
+        <Route
+          render={props => <NotFound className={classes.notFound} {...props} />}
+        />
       </Container>
     </div>
   );
