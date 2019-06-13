@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import firebase from 'firebase/app';
 
 import { CREATE_SESSION, DELETE_SESSION } from './queries';
 
@@ -39,22 +38,24 @@ async function createSession(client) {
 
 export const resolvers = {
   Mutation: {
-    authWithPassword: async (_, { input }, { client }) => {
+    authWithPassword: async (_, { input }, { client, firebase }) => {
       await client.writeData({ data: { isManualAuth: true } });
       const { email, password } = input;
-      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await firebase.auth.signInWithEmailAndPassword(email, password);
       await createSession(client);
+      console.log(firebase.auth.currentUser);
     },
-    signOut: async (_, __, { client }) => {
+    signOut: async (_, __, { client, firebase }) => {
       await client.mutate({ mutation: DELETE_SESSION });
-      await firebase.auth().signOut();
+      await firebase.auth.signOut();
     },
-    registerWithPassword: async (_, { input }, { client }) => {
+    registerWithPassword: async (_, { input }, { client, firebase }) => {
       await client.writeData({ data: { isManualAuth: true } });
       const { email, name, password } = input;
-      const { user } = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
+      const { user } = await firebase.auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
       await user.updateProfile({ displayName: name });
       const forceRefresh = true;
       await user.getIdToken(forceRefresh);
