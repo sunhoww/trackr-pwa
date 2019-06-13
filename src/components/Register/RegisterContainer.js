@@ -1,20 +1,13 @@
 // @flow
 
 import React, { useState } from 'react';
-import { Mutation } from 'react-apollo';
-import {
-  TextField,
-  InputAdornment,
-  IconButton,
-  Button,
-  CircularProgress,
-} from '@material-ui/core';
+import { TextField, InputAdornment, IconButton } from '@material-ui/core';
 import {
   Visibility as VisibilityIcon,
   VisibilityOff as VisibilityOffIcon,
 } from '@material-ui/icons';
 
-import { REGISTER_WITH_PASSWORD } from '../../graphql/queries';
+import RegisterAction from './RegisterAction.js';
 import useStyles from '../SignIn/styles';
 
 type Props = {
@@ -108,30 +101,11 @@ export default function SignInView({ onSuccess, setErrorMessage }: Props) {
         variant="filled"
         onChange={handleChange('passwordConfirm')}
       />
-      <Mutation
-        mutation={REGISTER_WITH_PASSWORD}
-        errorPolicy="all"
-        onCompleted={onSuccess}
+      <RegisterAction
+        handleSubmit={handleSubmit}
+        onSuccess={onSuccess}
         onError={({ networkError }) => setErrorMessage(networkError.message)}
-      >
-        {(mutation, { loading }) => (
-          <div className={classes.submit}>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              disabled={loading}
-              onClick={handleSubmit(mutation)}
-            >
-              Sign Up
-            </Button>
-            {loading && (
-              <CircularProgress size={24} className={classes.submitProgress} />
-            )}
-          </div>
-        )}
-      </Mutation>
+      />
     </form>
   );
 }
