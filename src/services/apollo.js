@@ -1,9 +1,6 @@
 // @flow
 
-import React from 'react';
-import type { ComponentType } from 'react';
 import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
 import gql from 'graphql-tag';
 import firebase from 'firebase';
 import { merge } from 'ramda';
@@ -46,16 +43,5 @@ async function getSessionId() {
 }
 
 client.onResetStore(() => client.writeData({ data: defaults }));
-
-export function withApollo(Component: ComponentType<any>) {
-  function WithApollo(props: Object) {
-    return (
-      <ApolloProvider client={client}>
-        <Component {...props} />
-      </ApolloProvider>
-    );
-  }
-  return WithApollo;
-}
 
 export default client;

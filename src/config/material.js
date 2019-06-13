@@ -1,11 +1,9 @@
 // @flow
 
-import React from 'react';
-import type { ComponentType } from 'react';
+import * as React from 'react';
+import { CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import teal from '@material-ui/core/colors/teal';
-import red from '@material-ui/core/colors/red';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { teal, red } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
@@ -17,14 +15,18 @@ const theme = createMuiTheme({
   },
 });
 
-export function withMaterial(Component: ComponentType<any>) {
-  function WithMaterial(props: Object) {
-    return (
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...props} />
-      </MuiThemeProvider>
-    );
-  }
-  return WithMaterial;
+type Props = {
+  theme: Object,
+  children: React.Node,
+};
+
+export function MaterialProvider({ theme, children }: Props) {
+  return (
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </MuiThemeProvider>
+  );
 }
+
+export default theme;
