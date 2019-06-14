@@ -1,10 +1,10 @@
 // @flow
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { Mutation } from 'react-apollo';
 import { Button, CircularProgress } from '@material-ui/core';
 
-import { FirebaseContext } from '../../services/firebase';
+import { useFirebase } from '../../services/firebase';
 import { AUTH_WITH_PASSWORD } from '../../graphql/queries';
 import useStyles from './styles';
 
@@ -20,7 +20,7 @@ export default function SignInAction({
   onError,
 }: Props) {
   const classes = useStyles();
-  const firebase = useContext(FirebaseContext);
+  const firebase = useFirebase();
 
   return (
     <Mutation
