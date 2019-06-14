@@ -6,10 +6,10 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter } from 'react-router-dom';
 
 import Firebase, { FirebaseProvider } from './services/firebase';
-import App from './components/App';
-import * as serviceWorker from './serviceWorker';
 import client from './services/apollo';
 import theme, { MaterialProvider } from './config/material';
+import App from './components/App';
+import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <FirebaseProvider value={new Firebase()}>
