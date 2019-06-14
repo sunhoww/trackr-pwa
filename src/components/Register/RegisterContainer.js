@@ -61,7 +61,6 @@ export default function SignInView({ onSuccess, setErrorMessage }: Props) {
         id="name"
         label="Name"
         required
-        autoFocus
         fullWidth
         margin="normal"
         variant="filled"
