@@ -1,12 +1,5 @@
 import gql from 'graphql-tag';
 
-export const AUTHED = gql`
-  query GetAuthed {
-    isAuthed @client
-    authCompleted @client
-  }
-`;
-
 export const SESSION = gql`
   {
     me {

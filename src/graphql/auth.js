@@ -4,9 +4,6 @@ import { CREATE_SESSION, DELETE_SESSION } from './queries';
 
 export const typeDef = gql`
   extend type Query {
-    isAuthed: Boolean
-    isManualAuth: Boolean
-    authCompleted: Boolean
     traccarSessionId: String
   }
 
