@@ -11,7 +11,7 @@ const client = new ApolloClient({
   uri: process.env.REACT_APP_TRACCAR_GRAPHQL,
   fetchOptions: { credentials: 'include' },
   clientState: { defaults, resolvers, typeDefs },
-  request: async (operation, ...rest) => {
+  request: async operation => {
     const [idToken, sessionId] = await Promise.all([
       getIdToken(),
       getSessionId(),
@@ -41,7 +41,5 @@ async function getSessionId() {
   }
   return {};
 }
-
-client.onResetStore(() => client.writeData({ data: defaults }));
 
 export default client;
