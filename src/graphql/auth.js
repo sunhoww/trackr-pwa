@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { CREATE_SESSION, DELETE_SESSION } from './queries';
+import { SESSION, CREATE_SESSION, DELETE_SESSION } from './queries';
 
 export const typeDef = gql`
   extend type Query {
@@ -25,12 +25,13 @@ export const typeDef = gql`
   }
 `;
 
-async function createSession(client) {
+export async function createSession(client) {
   const {
     data: { createSession },
   } = await client.mutate({ mutation: CREATE_SESSION });
-  const { traccarSessionId } = createSession || {};
-  client.writeData({ data: { isAuthed: true, traccarSessionId } });
+  const { traccarSessionId, me } = createSession || {};
+  client.writeData({ data: { traccarSessionId } });
+  client.writeQuery({ query: SESSION, data: { me } });
 }
 
 export const resolvers = {
@@ -40,7 +41,6 @@ export const resolvers = {
       const { email, password } = input;
       await firebase.auth.signInWithEmailAndPassword(email, password);
       await createSession(client);
-      console.log(firebase.auth.currentUser);
     },
     signOut: async (_, __, { client, firebase }) => {
       await client.mutate({ mutation: DELETE_SESSION });
