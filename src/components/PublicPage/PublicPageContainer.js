@@ -22,17 +22,6 @@ export default function PublicPageContainer({ match, location }: Props) {
     message: null,
   });
 
-  const [redirectToReferrer, setRedirectToReferrer] = useState(false);
-
-  function resetError() {
-    setError({ hasErrored: false, message: null });
-  }
-
-  if (redirectToReferrer) {
-    const { from } = location.state || { from: { pathname: '/' } };
-    return <Redirect to={from} />;
-  }
-
   return (
     <div className={classes.root}>
       <Container className={classes.main} component="main" maxWidth="xs">
@@ -40,7 +29,6 @@ export default function PublicPageContainer({ match, location }: Props) {
           <AvatarIcon hasErrored={error.hasErrored} />
           <FormRoute
             setErrorMessage={message => setError({ hasErrored: true, message })}
-            onSuccess={() => setRedirectToReferrer(true)}
           />
         </Paper>
         <Typography
@@ -75,7 +63,10 @@ export default function PublicPageContainer({ match, location }: Props) {
           Powered by <Link href="https://www.traccar.org/">traccar</Link>.
         </Typography>
       </Container>
-      <Snackbar {...error} resetError={resetError} />
+      <Snackbar
+        {...error}
+        resetError={() => setError({ hasErrored: false, message: null })}
+      />
     </div>
   );
 }

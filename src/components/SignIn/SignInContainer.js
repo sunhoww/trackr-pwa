@@ -11,11 +11,10 @@ import SignInAction from './SignInAction.js';
 import useStyles from './styles';
 
 type Props = {
-  onSuccess: Function,
   setErrorMessage: Function,
 };
 
-export default function SignInView({ onSuccess, setErrorMessage }: Props) {
+export default function SignInView({ setErrorMessage }: Props) {
   const classes = useStyles();
   const [fields, setFields] = useState({ email: null, password: null });
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -73,7 +72,6 @@ export default function SignInView({ onSuccess, setErrorMessage }: Props) {
       />
       <SignInAction
         handleSubmit={handleSubmit}
-        onSuccess={onSuccess}
         onError={({ networkError }) => setErrorMessage(networkError.message)}
       />
     </form>

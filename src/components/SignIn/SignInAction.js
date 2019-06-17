@@ -10,15 +10,10 @@ import useStyles from './styles';
 
 type Props = {
   handleSubmit: Function,
-  onSuccess: Function,
   onError: Function,
 };
 
-export default function SignInAction({
-  handleSubmit,
-  onSuccess,
-  onError,
-}: Props) {
+export default function SignInAction({ handleSubmit, onError }: Props) {
   const classes = useStyles();
   const firebase = useFirebase();
 
@@ -26,7 +21,6 @@ export default function SignInAction({
     <Mutation
       mutation={AUTH_WITH_PASSWORD}
       errorPolicy="all"
-      onCompleted={onSuccess}
       onError={onError}
       context={{ firebase }}
     >

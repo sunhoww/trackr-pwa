@@ -11,11 +11,10 @@ import RegisterAction from './RegisterAction.js';
 import useStyles from '../SignIn/styles';
 
 type Props = {
-  onSuccess: Function,
   setErrorMessage: Function,
 };
 
-export default function SignInView({ onSuccess, setErrorMessage }: Props) {
+export default function SignInView({ setErrorMessage }: Props) {
   const classes = useStyles();
   const [fields, setFields] = useState({
     email: null,
@@ -102,7 +101,6 @@ export default function SignInView({ onSuccess, setErrorMessage }: Props) {
       />
       <RegisterAction
         handleSubmit={handleSubmit}
-        onSuccess={onSuccess}
         onError={({ networkError }) => setErrorMessage(networkError.message)}
       />
     </form>

@@ -9,7 +9,6 @@ import { ROUTES } from './constants';
 
 type Props = {
   setErrorMessage: Function,
-  onSuccess: Function,
 };
 
 export default function FormRoute(props: Props) {
