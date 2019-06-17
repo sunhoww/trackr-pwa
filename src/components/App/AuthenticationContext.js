@@ -21,7 +21,6 @@ type Props = {
 export function AuthenticationProvider({ children }: Props) {
   const [values, setValues] = useState(initValues);
   const firebase = useFirebase();
-  console.log(firebase);
   useEffect(
     () => {
       if (firebase) {
@@ -30,7 +29,7 @@ export function AuthenticationProvider({ children }: Props) {
         });
       }
     },
-    [firebase, values.user]
+    [firebase]
   );
 
   return (
