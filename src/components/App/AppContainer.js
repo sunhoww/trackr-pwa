@@ -12,45 +12,62 @@ import AuthRoute from './AuthRoute';
 import { defaults } from '../../graphql';
 import { createSession } from '../../graphql/auth';
 
+function useSession(client: Object) {
+  const { isSigningIn, user } = useAuthentication();
+  const [hasSession, setHasSession] = useState(false);
+  const [isRequestingSession, setIsRequestingSession] = useState(false);
+
+  useEffect(
+    () => {
+      let active = true;
+      let session;
+      async function getSession() {
+        if (active) {
+          setIsRequestingSession(true);
+        }
+        if (active && user) {
+          session = await createSession(client);
+        }
+        if (active) {
+          setIsRequestingSession(false);
+          setHasSession(!!session);
+        }
+      }
+      const resetHandler = client.onResetStore(() =>
+        client.writeData({ data: defaults })
+      );
+      getSession();
+      return function() {
+        active = false;
+        resetHandler();
+      };
+    },
+    [client, user]
+  );
+
+  const isLoading = isSigningIn || isRequestingSession;
+  const hasAuth = !!user;
+
+  return { isLoading, hasAuth, hasSession };
+}
+
 type Props = {
   client: Object,
 };
 
 function AppContainer({ client }: Props) {
-  const [hasSession, setHasSession] = useState(false);
-  const { isSigningIn, user } = useAuthentication();
-  useEffect(
-    () => {
-      async function create() {
-        if (!isSigningIn && user) {
-          await createSession(client);
-          setHasSession(true);
-        }
-      }
-      function remove() {
-        if (!isSigningIn && !user) {
-          client.resetStore();
-        }
-      }
+  const { isLoading, hasAuth, hasSession } = useSession(client);
 
-      client.onResetStore(() => client.writeData({ data: defaults }));
-
-      create();
-      return remove;
-    },
-    [isSigningIn, user, client]
-  );
-
-  if (isSigningIn) {
+  if (isLoading) {
     return <Loading fullscreen />;
   }
 
-  if (!user) {
+  if (!hasAuth) {
     return <PublicPage />;
   }
 
   if (!hasSession) {
-    return <Loading fullscreen />;
+    return null;
   }
 
   return (
