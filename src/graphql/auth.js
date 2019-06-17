@@ -5,6 +5,7 @@ import { SESSION, CREATE_SESSION, DELETE_SESSION } from './queries';
 export const typeDef = gql`
   extend type Query {
     traccarSessionId: String
+    waitForToken: Boolean
   }
 
   extend type Mutation {
@@ -25,29 +26,40 @@ export const typeDef = gql`
   }
 `;
 
-export async function createSession(client) {
-  const {
-    data: { createSession },
-  } = await client.mutate({ mutation: CREATE_SESSION });
+export async function createSession(client, force = false) {
+  // `waitForToken` is used to prevent requesting session for new registration with
+  // stale id token.
+  const { waitForToken } = await client.readQuery({
+    query: gql`
+      {
+        waitForToken @client
+      }
+    `,
+  });
+  if (waitForToken && !force) {
+    return false;
+  }
+  const { data: { createSession } = {} } = await client.mutate({
+    mutation: CREATE_SESSION,
+  });
   const { traccarSessionId, me } = createSession || {};
-  client.writeData({ data: { traccarSessionId } });
+  client.writeData({ data: { traccarSessionId, waitForToken: false } });
   client.writeQuery({ query: SESSION, data: { me } });
+  return true;
 }
 
 export const resolvers = {
   Mutation: {
     authWithPassword: async (_, { input }, { client, firebase }) => {
-      await client.writeData({ data: { isManualAuth: true } });
       const { email, password } = input;
       await firebase.auth.signInWithEmailAndPassword(email, password);
-      await createSession(client);
     },
     signOut: async (_, __, { client, firebase }) => {
       await client.mutate({ mutation: DELETE_SESSION });
       await firebase.auth.signOut();
     },
     registerWithPassword: async (_, { input }, { client, firebase }) => {
-      await client.writeData({ data: { isManualAuth: true } });
+      await client.writeData({ data: { waitForToken: true } });
       const { email, name, password } = input;
       const { user } = await firebase.auth.createUserWithEmailAndPassword(
         email,
@@ -56,7 +68,7 @@ export const resolvers = {
       await user.updateProfile({ displayName: name });
       const forceRefresh = true;
       await user.getIdToken(forceRefresh);
-      await createSession(client);
+      await createSession(client, forceRefresh);
     },
   },
 };
