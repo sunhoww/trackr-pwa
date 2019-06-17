@@ -11,19 +11,24 @@ import useStyles, { colorChoices } from './styles';
 
 type Props = {
   className: String,
-  action?: React.Node,
+  drawerAction?: React.Node,
 };
 
-export default function ProfileContainer({ className, action }: Props) {
+export default function ProfileContainer({ className, drawerAction }: Props) {
   const classes = useStyles();
   return (
     <Query query={SESSION}>
-      {({ data = {} }) => {
+      {({ data = {}, loading }) => {
+        if (loading) {
+          return null;
+        }
         const { name, email } = data.me || {};
         const colorIndex = reduceToIndex(email, colorChoices.length);
         return (
           <div className={classes.root}>
-            {action && <div className={classes.action}>{action}</div>}
+            {drawerAction && (
+              <div className={classes.action}>{drawerAction}</div>
+            )}
             <Avatar
               className={clsx(
                 classes.avatar,
