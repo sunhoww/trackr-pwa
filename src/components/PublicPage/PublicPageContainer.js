@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Container, Typography, Paper, Link } from '@material-ui/core';
-import { Route, Switch, Link as RouterLink, Redirect } from 'react-router-dom';
+import { Route, Switch, Link as RouterLink } from 'react-router-dom';
 
 import AvatarIcon from './AvatarIcon';
 import FormRoute from './FormRoute';
