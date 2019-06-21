@@ -57,6 +57,7 @@ export const resolvers = {
     signOut: async (_, __, { client, firebase }) => {
       await client.mutate({ mutation: DELETE_SESSION });
       await firebase.auth.signOut();
+      client.resetStore();
     },
     registerWithPassword: async (_, { input }, { client, firebase }) => {
       await client.writeData({ data: { waitForToken: true } });
