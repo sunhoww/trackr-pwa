@@ -5,7 +5,7 @@ import { withApollo } from 'react-apollo';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import PublicPage from '../PublicPage';
-import Dashboard from '../Dashboard';
+import ProtectedPage from '../ProtectedPage';
 import Loading from '../Loading';
 import { useAuthentication } from './AuthenticationContext';
 import AuthRoute from './AuthRoute';
@@ -75,7 +75,7 @@ function AppContainer({ client }: Props) {
     <Switch>
       <AuthRoute
         path={ROUTES.DASHBOARD}
-        component={Dashboard}
+        component={ProtectedPage}
         condition={user => !!user}
       />
       <Route render={() => <Redirect to={ROUTES.DASHBOARD} />} />

@@ -24,7 +24,7 @@ import Navigation from '../Navigation';
 import NotFound from '../NotFound';
 import useStyles from './styles';
 
-export default function DashboardView() {
+export default function ProtectedPageView() {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
