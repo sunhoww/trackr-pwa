@@ -10,9 +10,9 @@ const Link = React.forwardRef((props, ref) => (
 ));
 
 type Props = {
-  primary: String,
+  primary: string,
   icon: React.Node,
-  to: String,
+  to: string,
   onClick?: Function,
 };
 
