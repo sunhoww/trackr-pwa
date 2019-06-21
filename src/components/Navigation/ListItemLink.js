@@ -22,12 +22,7 @@ const useStyles = makeStyles((theme: Object) => ({
   },
 }));
 
-export default function ListItemLinkView({
-  primary,
-  icon,
-  to,
-  onClick,
-}: Props) {
+export default function ListItemLink({ primary, icon, to, onClick }: Props) {
   const classes = useStyles();
   return (
     <li>

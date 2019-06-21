@@ -21,7 +21,7 @@ type Props = {
   className: String,
 };
 
-export default function NotFound({ className }: Props) {
+export default function NotFoundView({ className }: Props) {
   const classes = useStyles();
   return (
     <div className={clsx(className, classes.root)}>
