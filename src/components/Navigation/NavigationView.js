@@ -9,6 +9,7 @@ import {
 } from '@material-ui/icons';
 
 import ListItemLink from './ListItemLink';
+import SignOutLink from './SignOutLink';
 
 type Props = {
   onSelect?: Function,
@@ -34,7 +35,7 @@ export default function NavigationView({ onSelect }: Props) {
           />
         ))}
       </List>
-      <Divider />{' '}
+      <Divider />
       <List>
         {secondaryLinks.map(({ label, path, icon }) => (
           <ListItemLink
@@ -45,6 +46,7 @@ export default function NavigationView({ onSelect }: Props) {
             onClick={onSelect}
           />
         ))}
+        <SignOutLink onClick={onSelect} />
       </List>
     </React.Fragment>
   );
