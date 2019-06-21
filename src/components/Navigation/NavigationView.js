@@ -10,16 +10,19 @@ import {
 
 import ListItemLink from './ListItemLink';
 import SignOutLink from './SignOutLink';
+import { ROUTES } from '../../constants';
 
 type Props = {
   onSelect?: Function,
 };
 
 const primaryLinks = [
-  { label: 'Devices', path: '/devices', icon: <PlaceIcon /> },
-  { label: 'Settings', path: '/settings', icon: <SettingsIcon /> },
+  { label: 'Devices', path: ROUTES.DEVICES, icon: <PlaceIcon /> },
+  { label: 'Settings', path: ROUTES.SETTINGS, icon: <SettingsIcon /> },
 ];
-const secondaryLinks = [{ label: 'About', path: '/about', icon: <InfoIcon /> }];
+const secondaryLinks = [
+  { label: 'About', path: ROUTES.ABOUT, icon: <InfoIcon /> },
+];
 
 export default function NavigationView({ onSelect }: Props) {
   return (

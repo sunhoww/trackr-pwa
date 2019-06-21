@@ -11,6 +11,7 @@ import { useAuthentication } from './AuthenticationContext';
 import AuthRoute from './AuthRoute';
 import { defaults } from '../../graphql';
 import { createSession } from '../../graphql/auth';
+import { ROUTES } from '../../constants';
 
 function useSession(client: Object) {
   const { isSigningIn, user } = useAuthentication();
@@ -73,11 +74,11 @@ function AppContainer({ client }: Props) {
   return (
     <Switch>
       <AuthRoute
-        path="/user"
+        path={ROUTES.DASHBOARD}
         component={Dashboard}
         condition={user => !!user}
       />
-      <Route render={() => <Redirect to="/user" />} />
+      <Route render={() => <Redirect to={ROUTES.DASHBOARD} />} />
     </Switch>
   );
 }

@@ -5,6 +5,8 @@ import { Route, Redirect, withRouter } from 'react-router-dom';
 
 import { useAuthentication } from './AuthenticationContext';
 
+import { ROUTES } from '../../constants';
+
 type Props = {
   condition: Function,
   redirectTo?: String,
@@ -16,7 +18,10 @@ function AuthRoute({ condition, redirectTo, location, ...props }: Props) {
   if (!isSigningIn && !condition(user)) {
     return (
       <Redirect
-        to={{ pathname: redirectTo || '/auth', state: { from: location } }}
+        to={{
+          pathname: redirectTo || ROUTES.SIGN_IN,
+          state: { from: location },
+        }}
       />
     );
   }
