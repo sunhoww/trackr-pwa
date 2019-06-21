@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import SignIn from '../SignIn';
 import Register from '../Register';
-import { ROUTES } from './constants';
+import { ROUTES } from '../../constants';
 
 type Props = {
   setErrorMessage: Function,

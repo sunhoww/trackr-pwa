@@ -8,7 +8,7 @@ import AvatarIcon from './AvatarIcon';
 import FormRoute from './FormRoute';
 import Snackbar from '../Snackbar';
 import useStyles from './styles';
-import { ROUTES } from './constants';
+import { ROUTES } from '../../constants';
 
 type Props = {
   match: Object,

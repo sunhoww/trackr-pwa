@@ -11,7 +11,7 @@ import {
 import clsx from 'clsx';
 
 import useStyles from './styles';
-import { ROUTES } from './constants';
+import { ROUTES } from '../../constants';
 
 type Props = {
   hasErrored: boolean,
