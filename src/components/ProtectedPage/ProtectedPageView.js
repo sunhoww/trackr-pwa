@@ -51,9 +51,17 @@ export default function ProtectedPageView() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Dashboard
+          <Typography
+            variant="h6"
+            component="h1"
+            noWrap
+            className={classes.title}
+          >
+            {Object.keys(titles).map(x => (
+              <Route key={x} exact path={x} render={() => titles[x]} />
+            ))}
           </Typography>
+          <Profile />
         </Toolbar>
       </AppBar>
       <nav>
@@ -65,15 +73,18 @@ export default function ProtectedPageView() {
           onClose={() => setDrawerOpen(false)}
           ModalProps={{ keepMounted: true }}
         >
-          <Profile
-            drawerAction={
-              isLargeScreen && (
-                <IconButton onClick={() => setDrawerOpen(false)}>
-                  <ChevronLeftIcon />
-                </IconButton>
-              )
-            }
-          />
+          <div className={classes.drawerAction}>
+            <div className={classes.drawerTitle}>
+              <Typography variant="h6" noWrap>
+                trackr
+              </Typography>
+            </div>
+            {isLargeScreen && (
+              <IconButton onClick={() => setDrawerOpen(false)}>
+                <ChevronLeftIcon />
+              </IconButton>
+            )}
+          </div>
           <Divider />
           <Navigation onSelect={() => !isLargeScreen && setDrawerOpen(false)} />
         </Drawer>

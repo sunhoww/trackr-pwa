@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme: Object) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  title: {
+    flexGrow: 1,
+  },
   hide: {
     display: 'none',
   },
@@ -60,6 +63,18 @@ const useStyles = makeStyles((theme: Object) => ({
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
     },
+  },
+  drawerAction: {
+    ...theme.mixins.toolbar,
+    display: 'flex',
+    alignItems: 'center',
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+  },
+  drawerTitle: {
+    flexGrow: 1,
   },
   drawerPaper: {
     width: `calc(100vw - ${theme.spacing(12)}px)`,
