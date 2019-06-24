@@ -9,7 +9,6 @@ import {
 } from '@material-ui/icons';
 
 import ListItemLink from './ListItemLink';
-import SignOutLink from './SignOutLink';
 import { ROUTES } from '../../constants';
 
 type Props = {
@@ -49,7 +48,6 @@ export default function NavigationView({ onSelect }: Props) {
             onClick={onSelect}
           />
         ))}
-        <SignOutLink onClick={onSelect} />
       </List>
     </React.Fragment>
   );
