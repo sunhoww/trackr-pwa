@@ -21,12 +21,14 @@ import clsx from 'clsx';
 
 import Profile from '../Profile';
 import Navigation from '../Navigation';
+import Devices from '../Devices';
 import { AuthRoute } from '../Auth';
 import { ROUTES } from '../../constants';
 import useStyles from './styles';
 
 const titles = {
   [ROUTES.DASHBOARD]: 'Dashboard',
+  [ROUTES.DEVICES]: 'Devices',
 };
 
 export default function ProtectedPageView() {
@@ -104,6 +106,11 @@ export default function ProtectedPageView() {
           <AuthRoute
             path={ROUTES.DASHBOARD}
             component={() => <div>Dashboard</div>}
+            condition={user => !!user}
+          />
+          <AuthRoute
+            path={ROUTES.DEVICES}
+            component={Devices}
             condition={user => !!user}
           />
           <Route render={() => <Redirect to={ROUTES.DASHBOARD} />} />
