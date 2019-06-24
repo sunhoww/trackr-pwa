@@ -68,9 +68,6 @@ const useStyles = makeStyles((theme: Object) => ({
     },
   },
   toolbarOffset: theme.mixins.toolbar,
-  notFound: {
-    flexGrow: 1,
-  },
 }));
 
 export default useStyles;

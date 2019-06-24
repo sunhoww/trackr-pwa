@@ -15,16 +15,19 @@ const useStyles = makeStyles((theme: Object) => ({
   text: {
     color: theme.palette.action.disabled,
   },
+  fullscreen: {
+    flexGrow: 1,
+  },
 }));
 
 type Props = {
-  className: String,
+  fullscreen: boolean,
 };
 
-export default function NotFoundView({ className }: Props) {
+export default function NotFoundView({ fullscreen }: Props) {
   const classes = useStyles();
   return (
-    <div className={clsx(className, classes.root)}>
+    <div className={clsx(classes.root, { [classes.fullscreen]: fullscreen })}>
       <Typography className={classes.text} variant="h3" gutterBottom>
         <span role="img" aria-label="not found">
           😬
