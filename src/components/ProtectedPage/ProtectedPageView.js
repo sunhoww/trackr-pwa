@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useState } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -21,7 +21,8 @@ import clsx from 'clsx';
 
 import Profile from '../Profile';
 import Navigation from '../Navigation';
-import NotFound from '../NotFound';
+import { AuthRoute } from '../Auth';
+import { ROUTES } from '../../constants';
 import useStyles from './styles';
 
 export default function ProtectedPageView() {
@@ -84,9 +85,14 @@ export default function ProtectedPageView() {
         })}
       >
         <div className={classes.toolbarOffset} />
-        <Route
-          render={props => <NotFound className={classes.notFound} {...props} />}
-        />
+        <Switch>
+          <AuthRoute
+            path={ROUTES.DASHBOARD}
+            component={() => <div>Dashboard</div>}
+            condition={user => !!user}
+          />
+          <Route render={() => <Redirect to={ROUTES.DASHBOARD} />} />
+        </Switch>
       </Container>
     </div>
   );

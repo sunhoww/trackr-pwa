@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { withApollo } from 'react-apollo';
-import { Route, Switch, Redirect } from 'react-router-dom';
 
 import PublicPage from '../PublicPage';
 import ProtectedPage from '../ProtectedPage';
@@ -69,16 +68,7 @@ function AppContainer({ client }: Props) {
     return null;
   }
 
-  return (
-    <Switch>
-      <AuthRoute
-        path={ROUTES.DASHBOARD}
-        component={ProtectedPage}
-        condition={user => !!user}
-      />
-      <Route render={() => <Redirect to={ROUTES.DASHBOARD} />} />
-    </Switch>
-  );
+  return <ProtectedPage />;
 }
 
 export default withApollo(AppContainer);
