@@ -25,6 +25,10 @@ import { AuthRoute } from '../Auth';
 import { ROUTES } from '../../constants';
 import useStyles from './styles';
 
+const titles = {
+  [ROUTES.DASHBOARD]: 'Dashboard',
+};
+
 export default function ProtectedPageView() {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);

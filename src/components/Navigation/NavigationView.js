@@ -3,6 +3,7 @@
 import React from 'react';
 import { List, Divider } from '@material-ui/core';
 import {
+  Dashboard as DashboardIcon,
   Place as PlaceIcon,
   Settings as SettingsIcon,
   InfoOutlined as InfoIcon,
@@ -16,6 +17,7 @@ type Props = {
 };
 
 const primaryLinks = [
+  { label: 'Dashboard', path: ROUTES.DASHBOARD, icon: <DashboardIcon /> },
   { label: 'Devices', path: ROUTES.DEVICES, icon: <PlaceIcon /> },
   { label: 'Settings', path: ROUTES.SETTINGS, icon: <SettingsIcon /> },
 ];
