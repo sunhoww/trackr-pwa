@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { AuthenticationProvider } from './AuthenticationContext';
+import { AuthenticationProvider } from '../Auth';
 import AppContainer from './AppContainer';
 
 export default function AppView() {

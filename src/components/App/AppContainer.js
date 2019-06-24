@@ -7,11 +7,9 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import PublicPage from '../PublicPage';
 import ProtectedPage from '../ProtectedPage';
 import Loading from '../Loading';
-import { useAuthentication } from './AuthenticationContext';
-import AuthRoute from './AuthRoute';
+import { useAuthentication } from '../Auth';
 import { defaults } from '../../graphql';
 import { createSession } from '../../graphql/auth';
-import { ROUTES } from '../../constants';
 
 function useSession(client: Object) {
   const { isSigningIn, user } = useAuthentication();
