@@ -1,7 +1,8 @@
 // @flow
 
 import React, { useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import type { RouterLocation, RouterHistory } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -15,6 +16,7 @@ import {
 import {
   Menu as MenuIcon,
   ChevronLeft as ChevronLeftIcon,
+  ArrowBack as ArrowBackIcon,
 } from '@material-ui/icons';
 import { useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -31,11 +33,18 @@ const titles = {
   [ROUTES.DEVICES]: 'Devices',
 };
 
-export default function ProtectedPageView() {
+type Props = {
+  location: RouterLocation,
+  history: RouterHistory,
+};
+
+function ProtectedPageView({ location, history }: Props) {
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('sm'));
+
+  const isSecondaryPage = !location.pathname.startsWith(ROUTES.DASHBOARD);
 
   return (
     <div className={classes.root}>
@@ -44,18 +53,23 @@ export default function ProtectedPageView() {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: drawerOpen,
         })}
+        color={isSecondaryPage ? 'default' : 'primary'}
       >
         <Toolbar>
           <IconButton
             className={clsx(classes.menuButton, {
-              [classes.hide]: isLargeScreen && drawerOpen,
+              [classes.hide]: isLargeScreen && drawerOpen && !isSecondaryPage,
             })}
             color="inherit"
-            aria-label="Open drawer"
             edge="start"
-            onClick={() => setDrawerOpen(true)}
+            onClick={
+              isSecondaryPage ? history.goBack : () => setDrawerOpen(true)
+            }
           >
-            <MenuIcon />
+            <Switch>
+              <Route path={ROUTES.DASHBOARD} component={MenuIcon} />
+              <Route path={ROUTES.DEVICES} component={ArrowBackIcon} />
+            </Switch>
           </IconButton>
           <Typography
             variant="h6"
@@ -67,7 +81,9 @@ export default function ProtectedPageView() {
               <Route key={x} exact path={x} render={() => titles[x]} />
             ))}
           </Typography>
-          <Profile />
+          <Switch>
+            <Route path={ROUTES.DASHBOARD} component={Profile} />
+          </Switch>
         </Toolbar>
       </AppBar>
       <nav>
@@ -119,3 +135,5 @@ export default function ProtectedPageView() {
     </div>
   );
 }
+
+export default withRouter(ProtectedPageView);

@@ -73,6 +73,9 @@ const useStyles = makeStyles((theme: Object) => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
   },
+  drawerActionButton: {
+    marginRight: theme.spacing(2.5),
+  },
   drawerTitle: {
     flexGrow: 1,
   },
