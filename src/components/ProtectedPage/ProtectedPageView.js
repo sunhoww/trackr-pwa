@@ -15,7 +15,7 @@ import {
 } from '@material-ui/core';
 import {
   Menu as MenuIcon,
-  ChevronLeft as ChevronLeftIcon,
+  FirstPage as FirstPageIcon,
   ArrowBack as ArrowBackIcon,
 } from '@material-ui/icons';
 import { useTheme } from '@material-ui/core/styles';
@@ -48,6 +48,37 @@ function ProtectedPageView({ location, history }: Props) {
 
   return (
     <div className={classes.root}>
+      <nav>
+        <Drawer
+          className={classes.drawer}
+          classes={{ paper: classes.drawerPaper }}
+          variant={isLargeScreen ? 'persistent' : 'temporary'}
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+          ModalProps={{ keepMounted: true }}
+        >
+          <div className={classes.drawerAction}>
+            {isLargeScreen && (
+              <IconButton
+                className={classes.drawerActionButton}
+                color="inherit"
+                aria-label="Close drawer"
+                edge="start"
+                onClick={() => setDrawerOpen(false)}
+              >
+                <FirstPageIcon />
+              </IconButton>
+            )}
+            <div className={classes.drawerTitle}>
+              <Typography variant="h6" noWrap>
+                trackr
+              </Typography>
+            </div>
+          </div>
+          <Divider />
+          <Navigation onSelect={() => !isLargeScreen && setDrawerOpen(false)} />
+        </Drawer>
+      </nav>
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
@@ -86,31 +117,6 @@ function ProtectedPageView({ location, history }: Props) {
           </Switch>
         </Toolbar>
       </AppBar>
-      <nav>
-        <Drawer
-          className={classes.drawer}
-          classes={{ paper: classes.drawerPaper }}
-          variant={isLargeScreen ? 'persistent' : 'temporary'}
-          open={drawerOpen}
-          onClose={() => setDrawerOpen(false)}
-          ModalProps={{ keepMounted: true }}
-        >
-          <div className={classes.drawerAction}>
-            <div className={classes.drawerTitle}>
-              <Typography variant="h6" noWrap>
-                trackr
-              </Typography>
-            </div>
-            {isLargeScreen && (
-              <IconButton onClick={() => setDrawerOpen(false)}>
-                <ChevronLeftIcon />
-              </IconButton>
-            )}
-          </div>
-          <Divider />
-          <Navigation onSelect={() => !isLargeScreen && setDrawerOpen(false)} />
-        </Drawer>
-      </nav>
       <Container
         component="main"
         className={clsx(classes.main, {
